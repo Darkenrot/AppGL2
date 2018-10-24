@@ -24,7 +24,8 @@ HINSTANCE       hInstance;                          // Holds The Instance Of The
 bool    keys[256];                              // Array Used For The Keyboard Routine
 bool    active = TRUE;                                // Window Active Flag Set To TRUE By Default
 bool    fullscreen = TRUE;                            // Fullscreen Flag Set To Fullscreen Mode By Default
-
+GLfloat rtri;
+GLfloat rquad;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -57,8 +58,85 @@ int InitGL(GLvoid) {
 }
 
 int DrawGLScene(GLvoid) {
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+	glTranslatef(-1.5f, 0.0f, -6.0f);
+	glRotatef(rtri, 0.0f, 1.0f, 0.0f);
+	glBegin(GL_TRIANGLES);
+	
+	glColor3f(1.0f, 0.0f, 0.0f);          // Red
+	glVertex3f(0.0f, 1.0f, 0.0f);          // Top Of Triangle (Front)
+	glColor3f(0.0f, 1.0f, 0.0f);          // Green
+	glVertex3f(-1.0f, -1.0f, 1.0f);          // Left Of Triangle (Front)
+	glColor3f(0.0f, 0.0f, 1.0f);          // Blue
+	glVertex3f(1.0f, -1.0f, 1.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);          // Red
+	glVertex3f(0.0f, 1.0f, 0.0f);          // Top Of Triangle (Right)
+	glColor3f(0.0f, 0.0f, 1.0f);          // Blue
+	glVertex3f(1.0f, -1.0f, 1.0f);          // Left Of Triangle (Right)
+	glColor3f(0.0f, 1.0f, 0.0f);          // Green
+	glVertex3f(1.0f, -1.0f, -1.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);          // Red
+	glVertex3f(0.0f, 1.0f, 0.0f);          // Top Of Triangle (Back)
+	glColor3f(0.0f, 1.0f, 0.0f);          // Green
+	glVertex3f(1.0f, -1.0f, -1.0f);         // Left Of Triangle (Back)
+	glColor3f(0.0f, 0.0f, 1.0f);          // Blue
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);          // Red
+	glVertex3f(0.0f, 1.0f, 0.0f);          // Top Of Triangle (Left)
+	glColor3f(0.0f, 0.0f, 1.0f);          // Blue
+	glVertex3f(-1.0f, -1.0f, -1.0f);          // Left Of Triangle (Left)
+	glColor3f(0.0f, 1.0f, 0.0f);          // Green
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+
+
+	glEnd();
+	glLoadIdentity();
+	glTranslatef(1.5f, 0.0f, -7.0f);
+	glRotatef(rquad, 1.0f, 1.0f, 1.0f);
+	glColor3f(0.5f, 0.5f, 1.0f);
+	glBegin(GL_QUADS);
+		////TOP
+		glColor3f(0.0f, 1.0f, 0.0f);
+		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(1.0f, 1.0f, 1.0f);
+		////BOTTOM
+		glColor3f(1.0f, 0.5f, 0.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
+		////FRONT
+		glColor3f(1.0f, 0.0f, 0.0f);
+		glVertex3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
+		////RIGHT
+		glColor3f(0.0f, 0.0f, 1.0f);
+		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
+		////BACK
+		glColor3f(0.5f, 0.0f, 0.5f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		////LEFT
+		glColor3f(0.0f, 0.5f, 0.5f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
+
+	glEnd();
+	rtri += 0.2f;
+	rquad -= 0.15f;
 	return TRUE;
 }
 
